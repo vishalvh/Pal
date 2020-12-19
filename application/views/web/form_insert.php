@@ -1,0 +1,237 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+    <!-- left side start-->
+		<?php $this->load->view('web/left');?>
+		<!-- left side end-->
+    
+		<!-- main content start-->
+		<div class="main-content">
+			<!-- header-starts -->
+			<?php $this->load->view('web/header');?>
+		<!-- //header-ends -->
+			<div id="page-wrapper">
+				<div class="graphs">
+					<h3 class="blank1">Add Employee</h3>
+						<div class="tab-content">
+						<div class="tab-pane active" id="horizontal-form">
+							<form class="form-horizontal" method="post" action="<?php echo base_url();?>admin/insert" name="savingdata" onsubmit="return validate()">
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Name</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="usernameval" placeholder="Name" name="username" value="<?php echo set_value('username');?>">
+										<?php echo form_error('username' ,'<div class="error" style="color:red;padding-bottom: 0px;padding-top: 0px;">','</div>');?>
+										<div class="invalid-feedback" id="usernameerror" style="color: red;"></div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Mobile No</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="mobileval" placeholder="Mobile Number" name="mobile" value="<?php echo set_value('mobile');?>">
+										<?php echo form_error('mobile' ,'<div class="error" style="color:red;padding-bottom: 0px;padding-top: 0px;">','</div>'); ?>
+										<div class="invalid-feedback" id="mobileerror" style="color: red;"></div>										
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Email Address</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" id="AdminEmail" placeholder="Email Address" name="email" value="<?php echo set_value('email');?>">
+										<?php echo form_error('email' ,'<div class="error" style="color:red;padding-bottom: 0px;padding-top: 0px;">','</div>');?>
+										<div class="invalid-feedback" id="AdminEmailerror" style="color: red;"></div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Password</label>
+									<div class="col-sm-8">
+										<input type="password" class="form-control1" id="password" placeholder="Password" name="password" value="<?php echo set_value('password');?>">
+										<?php echo form_error('password' ,'<div class="error" style="color:red;padding-bottom: 0px;padding-top: 0px;">','</div>');?>
+										<div class="invalid-feedback" id="cpasserror" style="color: red;"></div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="selector1" class="col-sm-2 control-label">Select Location</label>
+									<div class="col-sm-8">
+										<select name="sel_loc" id="location" class="form-control1">
+										<option value="">Select Location</option>
+										<?php 
+
+											foreach ($r->result() as $row) {
+												?>
+													<option value="<?php echo $row->l_id?>"><?php echo $row->l_name?></option>
+												<?php
+											}
+										?>
+										
+									</select><div class="invalid-feedback" id="locationerror" style="color: red;"></div></div>
+								</div>
+								<div class="form-group">
+									<label for="selector1" class="col-sm-2 control-label">Select Shift</label>
+									<div class="col-sm-8">
+										<select name="shift" id="shift" class="form-control1">
+										<option value="">Select Shift</option>
+										<option value="1">Day</option>
+										<option value="2">Night</option>
+										<option value="3">24 hours</option>
+									</select><div class="invalid-feedback" id="shifterror" style="color: red;"></div></div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-8 col-sm-offset-2">
+										<button class="btn-success btn" type="submit" name="submit">Register</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					
+					
+  
+						
+				</div>
+			<!-- switches -->
+		<div class="switches">
+			
+		</div>
+		<!-- //switches -->
+						</div>
+			<!--body wrapper start-->
+			</div>
+			 <!--body wrapper end-->
+		</div>
+        <!--footer section start-->
+			<?php $this->load->view('web/footer');?>
+        <!--footer section end-->
+
+      <!-- main content end-->
+   </section>
+  
+<script src="<?php echo base_url();?>assets1/js/jquery.nicescroll.js"></script>
+<script src="<?php echo base_url();?>assets1/js/scripts.js"></script>
+<!-- Bootstrap Core JavaScript -->
+   <script src="<?php echo base_url();?>assets1/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<script>
+			
+$(document).ready(function(){ 
+
+	$("#usernameval").blur(function(){
+		 var name = $("#usernameval").val();
+                            if(name == ""){
+         $("#usernameerror").html("Name is required.");
+                      }
+                      else{
+							     $("#usernameerror").html('');
+                            }
+    }
+					);
+	$("#mobileval").blur(function(){
+		 var mobile = $("#mobileval").val();
+                            if(mobile == ""){
+         $("#mobileerror").html("Mobile Number is required.");
+                      }
+                      else{
+							     $("#mobileerror").html('');
+                            }
+    }
+					);
+	$("#AdminEmail").blur(function(){
+		 var email = $("#AdminEmail").val();
+                            if(email == ""){
+         $("#AdminEmailerror").html("Email Id is required.");
+                      }else{
+                                        var filter = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+										if (filter.test(email)) {
+                                              $("#AdminEmailerror").html('');
+                                         }else{
+                                            
+											  $("#AdminEmailerror").html('Email is not valid.');
+                                         }
+					  }
+    }
+					);
+	$("#password").blur(function(){
+		 var password = $("#password").val();
+		
+                            if(password == ""){
+         $("#cpasserror").html(" Password is required.");
+                      }else{
+										
+                                              $("#cpasserror").html('');
+                                         
+					  }
+    }
+					);
+
+	$("#location").blur(function(){
+		 var location = $("#location").val();
+		
+                            if(location == ""){
+         $("#locationerror").html("Select Any location.");
+                      }else{
+										
+                                              $("#locationerror").html('');
+                                         
+					  }
+    }
+					);
+
+	$("#shift").blur(function(){
+		 var shift = $("#shift").val();
+		
+                            if(shift == ""){
+         $("#shifterror").html("Select Shift.");
+                      }else{
+										
+                                              $("#shifterror").html('');
+                                         
+					  }
+    }
+					);
+
+});	
+function validate(){
+         var name = document.forms["savingdata"]["usernameval"].value;
+         var mobile = document.forms["savingdata"]["mobileval"].value;
+         var AdminEmail = document.forms["savingdata"]["AdminEmail"].value;
+         var cpass = document.forms["savingdata"]["password"].value;
+         var location = document.forms["savingdata"]["location"].value;
+       	 var shift = document.forms["savingdata"]["shift"].value;
+           
+       
+        var temp = 0;
+       if(name == ""){
+            $("#usernameerror").html("Name is required.");
+            temp++;
+        }if(mobile == ""){
+            $("#mobileerror").html("Mobile Number is required.");
+            temp++;
+        }
+        if(AdminEmail == ""){
+            $("#AdminEmailerror").html("Email id  is required.");
+            temp++;
+        }
+	if(cpass == ""){
+            $("#cpasserror").html(" Password is required.");
+            temp++;
+        }
+        if(location == ""){
+            $("#locationerror").html("Select Any location.");
+            temp++;
+        }
+        if(shift == ""){
+            $("#shifterror").html("Select Shift.");
+            temp++;
+        }
+	
+		
+	 	
+        if(temp != 0){
+        			 return false;     
+        }
+    }
+	</script>
