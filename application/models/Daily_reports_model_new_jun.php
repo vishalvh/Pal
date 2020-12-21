@@ -668,7 +668,7 @@ GROUP BY si.`date`");
         return $query->result();
     }
 	public function savingList( $lid,$sdate, $edate){
-        $query = $this->db->query("SELECT SUM(amount) as total,date FROM saving_member_transaction WHERE `date` <= '$edate' AND `date` >= '$sdate' and location_id='$lid' GROUP BY DATE ");
+        $query = $this->db->query("SELECT SUM(amount) as total,date FROM saving_member_transaction WHERE `date` <= '$edate' AND `date` >= '$sdate' and location_id='$lid' and status='1' GROUP BY DATE ");
         return $query->result();
     }
 	public function oilstokofdate($lid,$date){
