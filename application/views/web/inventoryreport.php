@@ -122,7 +122,7 @@
                                 <th>Amount</th>
                                 <th>VAT Amount</th>
                                 <th>CESS Amount</th>
-                                <th>Other Tax</th>
+                                <th>TCS Tax</th>
                                 <th>CGST</th>
                                 <th>SGST</th>
                                 <th>Total Amount</th>
